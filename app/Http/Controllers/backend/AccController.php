@@ -9,6 +9,6 @@ class AccController extends Controller
 {
     public function Index()
     {
-        return view('backend.acc.listuser');
+        return view('acc.listuser');
     }
 }

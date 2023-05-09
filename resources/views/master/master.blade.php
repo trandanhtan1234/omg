@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Quản trị - Store</title>
+	<title>@yield('title')</title>
+    <base href="{{ asset('').'backend/' }}">
 	<!-- css -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-    <base href="{{ asset('').'backend/' }}">
 	<link href="css/styles.css" rel="stylesheet">
 	<!--Icons-->
 	<script src="js/lumino.glyphs.js"></script>
@@ -15,13 +15,13 @@
 </head>
 <body>
 	<!-- header -->
-	@include('master.header')
+    @include('master.header')
 	<!-- header -->
-    <!-- sidebar left-->
+	<!-- sidebar left-->
     @include('master.sidebar')
-    <!--/. end sidebar left-->
+	<!--/. end sidebar left-->
 	<!--main-->
-    @include('content')
+    @yield('content')
     <!--end main-->
     <!-- javascript -->
     <script src="js/jquery-1.11.1.min.js"></script>

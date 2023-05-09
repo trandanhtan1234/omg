@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\AccController;
+use App\Http\Controllers\backend\LoginController;
+// use App\Http\Controllers\backend;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,10 @@ use App\Http\Controllers\backend\AccController;
 //     return view('welcome');
 // });
 
-Route::group(['prefix' => 'admin'], function() {
+Route::get('login', [LoginController::class, 'Index'])->middleware('CheckLogout');
+Route::post('login', [LoginController::class, 'Login'])->name('login');
+Route::get('logout', [LoginController::class, 'Logout'])->name('logout');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function() {
     Route::get('acc', [AccController::class, 'Index']);
 });
