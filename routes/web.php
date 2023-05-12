@@ -24,6 +24,8 @@ Route::get('login', [LoginController::class, 'Index'])->middleware('CheckLogout'
 Route::post('login', [LoginController::class, 'Login'])->name('login');
 Route::get('logout', [LoginController::class, 'Logout'])->name('logout');
 
+Route::get('ttt', [LoginController::class, 'ttt']);
+
 Route::group(['prefix' => 'admin', 'middleware' => 'CheckLogin'], function() {
     Route::get('acc', [AccController::class, 'Index']);
 });
