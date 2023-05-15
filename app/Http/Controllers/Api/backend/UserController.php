@@ -20,7 +20,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd(Auth::id());
         $ListUser = $this->UserRepo->ListUser();
 
         if ($ListUser['data'] != null) {

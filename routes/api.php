@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [LoginController::class, 'store']);
 
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('test', [UserController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => 'CheckLoginAPI'], function() {
+    Route::get('listuser', [UserController::class, 'index']);
 });

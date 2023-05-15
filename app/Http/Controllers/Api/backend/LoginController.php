@@ -37,6 +37,14 @@ class LoginController extends Controller
                     'expired_token' => date('Y-m-d H:i:s', strtotime('+30 minutes')),
                     'user_id' => Auth::id()
                 ]);
+            } elseif (!empty($checkTokenExists) && $checkTokenExists->expired_token < date('Y-m-d H:i:s')) {
+                $UpdateToken = Token::where('user_id', Auth::id())->update([
+                    'token' => Str::random(40),
+                    'refresh_token' => Str::random(40),
+                    'expired_token' => date('Y-m-d H:i:s', strtotime('+30 minutes')),
+                ]);
+
+                $UserToken = $checkTokenExists;
             } else {
                 $UserToken = $checkTokenExists;
             }
