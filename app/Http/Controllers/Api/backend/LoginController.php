@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Api\AddUserAPIRequest;
 use illuminate\Support\Facades\Auth;
 use App\Models\models\Token;
 use Illuminate\Support\Str;
@@ -22,7 +21,7 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AddUserAPIRequest $request)
+    public function store(request $request)
     {
         $email = $request->email;
         $password = $request->password;
@@ -44,7 +43,8 @@ class LoginController extends Controller
                     'expired_token' => date('Y-m-d H:i:s', strtotime('+30 minutes')),
                 ]);
 
-                $UserToken = $checkTokenExists;
+                $TokenUpdated = Token::where('user_id', Auth::id())->first();
+                $UserToken = $TokenUpdated;
             } else {
                 $UserToken = $checkTokenExists;
             }

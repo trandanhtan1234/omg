@@ -24,4 +24,6 @@ Route::post('login', [LoginController::class, 'store']);
 
 Route::group(['prefix' => 'admin', 'middleware' => 'CheckLoginAPI'], function() {
     Route::get('listuser', [UserController::class, 'index']);
+    Route::post('adduser', [UserController::class, 'store']);
+    Route::post('edituser', [UserController::class, 'update']);
 });

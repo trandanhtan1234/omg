@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class AddUserAPIRequest extends FormRequest
+class EditUserAPIRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,12 +31,10 @@ class AddUserAPIRequest extends FormRequest
 
         ]));
     }
-
     public function rules(): array
     {
         return [
-            'email' => 'required|email|min:6|unique:listuser,email',
-            'password' => 'required|min:6',
+            'email' => 'required|min:6|email|unique:listuser,email,'.$this->id.',id',
             'phone' => 'unique:listuser,phone|required|min:10|max:10'
         ];
     }
@@ -48,8 +46,6 @@ class AddUserAPIRequest extends FormRequest
             'email.email' => 'Email format incorrect',
             'email.min' => 'Emain min: 6 characters',
             'email.unique' => 'Email already taken',
-            'password.required' => 'Password required',
-            'password.min' => 'Password min: 6 characters'
         ];
     }
 }
